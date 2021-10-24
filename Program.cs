@@ -43,7 +43,7 @@ namespace Lab3Q1
 
 
            Console.WriteLine( "MultiThread is Done!");
-           return 0;
+           
         }
     }
 }

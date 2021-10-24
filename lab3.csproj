@@ -1,0 +1,135 @@
+﻿<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProjectGuid>{D938E520-1680-463B-8656-B5DD71F1AA16}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <NoStandardLibraries>false</NoStandardLibraries>
+    <AssemblyName>ConsoleApplication</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup>
+    <RootNamespace>lab3</RootNamespace>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>Lab3Q1.WordCountTester</StartupObject>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="HelperFunctions.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="UnitTestException.cs" />
+    <Compile Include="WordCountTester.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include=".git\config" />
+    <None Include=".git\description" />
+    <None Include=".git\HEAD" />
+    <None Include=".git\hooks\applypatch-msg.sample" />
+    <None Include=".git\hooks\commit-msg.sample" />
+    <None Include=".git\hooks\fsmonitor-watchman.sample" />
+    <None Include=".git\hooks\post-update.sample" />
+    <None Include=".git\hooks\pre-applypatch.sample" />
+    <None Include=".git\hooks\pre-commit.sample" />
+    <None Include=".git\hooks\pre-merge-commit.sample" />
+    <None Include=".git\hooks\pre-push.sample" />
+    <None Include=".git\hooks\pre-rebase.sample" />
+    <None Include=".git\hooks\pre-receive.sample" />
+    <None Include=".git\hooks\prepare-commit-msg.sample" />
+    <None Include=".git\hooks\update.sample" />
+    <None Include=".git\index" />
+    <None Include=".git\info\exclude" />
+    <None Include=".git\logs\HEAD" />
+    <None Include=".git\logs\refs\heads\main" />
+    <None Include=".git\logs\refs\remotes\origin\HEAD" />
+    <None Include=".git\objects\pack\pack-b6e993a3f5244b3d4479246cc7bb8178e4da1e14.idx" />
+    <None Include=".git\objects\pack\pack-b6e993a3f5244b3d4479246cc7bb8178e4da1e14.pack" />
+    <None Include=".git\packed-refs" />
+    <None Include=".git\refs\heads\main" />
+    <None Include=".git\refs\remotes\origin\HEAD" />
+    <None Include=".vs\CPEN333-Lab3\v16\.suo" />
+    <None Include=".vs\ProjectSettings.json" />
+    <None Include=".vs\slnx.sqlite" />
+    <None Include=".vs\VSWorkspaceState.json" />
+    <None Include="README.md" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="data\copyright.txt" />
+    <Content Include="data\shakespeare_alls_well.txt" />
+    <Content Include="data\shakespeare_antony_cleopatra.txt" />
+    <Content Include="data\shakespeare_as_you_like_it.txt" />
+    <Content Include="data\shakespeare_comedy_of_errors.txt" />
+    <Content Include="data\shakespeare_coriolanus.txt" />
+    <Content Include="data\shakespeare_cymbeline.txt" />
+    <Content Include="data\shakespeare_gentlemen_of_verona.txt" />
+    <Content Include="data\shakespeare_hamlet.txt" />
+    <Content Include="data\shakespeare_julius_caesar.txt" />
+    <Content Include="data\shakespeare_king_henry_IV_first.txt" />
+    <Content Include="data\shakespeare_king_henry_IV_second.txt" />
+    <Content Include="data\shakespeare_king_henry_V.txt" />
+    <Content Include="data\shakespeare_king_henry_VIII.txt" />
+    <Content Include="data\shakespeare_king_henry_VI_first.txt" />
+    <Content Include="data\shakespeare_king_henry_VI_second.txt" />
+    <Content Include="data\shakespeare_king_henry_VI_third.txt" />
+    <Content Include="data\shakespeare_king_john.txt" />
+    <Content Include="data\shakespeare_king_lear.txt" />
+    <Content Include="data\shakespeare_king_richard_II.txt" />
+    <Content Include="data\shakespeare_king_richard_III.txt" />
+    <Content Include="data\shakespeare_lovers_complaint.txt" />
+    <Content Include="data\shakespeare_loves_labours_lost.txt" />
+    <Content Include="data\shakespeare_macbeth.txt" />
+    <Content Include="data\shakespeare_measure_for_measure.txt" />
+    <Content Include="data\shakespeare_merchant_of_venice.txt" />
+    <Content Include="data\shakespeare_midsummer_nights_dream.txt" />
+    <Content Include="data\shakespeare_much_ado.txt" />
+    <Content Include="data\shakespeare_othello.txt" />
+    <Content Include="data\shakespeare_romeo_and_juliet.txt" />
+    <Content Include="data\shakespeare_romeo_and_juliet_prologue.txt" />
+    <Content Include="data\shakespeare_sonnets.txt" />
+    <Content Include="data\shakespeare_taming_of_the_shrew.txt" />
+    <Content Include="data\shakespeare_tempest.txt" />
+    <Content Include="data\shakespeare_timon_of_athens.txt" />
+    <Content Include="data\shakespeare_titus_andronicus.txt" />
+    <Content Include="data\shakespeare_troilus_and_cressida.txt" />
+    <Content Include="data\shakespeare_twelfth_night.txt" />
+    <Content Include="data\shakespeare_winters_tale.txt" />
+    <Content Include="data\shakespeare_wives_of_windsor.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include=".git\objects\info\" />
+    <Folder Include=".git\refs\tags\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSHARP.Targets" />
+  <ProjectExtensions>
+    <VisualStudio AllowExistingFolder="true" />
+  </ProjectExtensions>
+</Project>

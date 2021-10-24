@@ -17,11 +17,21 @@ namespace Lab3Q1
         public static int WordCount(ref string line, int start_idx)
         {
             // YOUR IMPLEMENTATION HERE
+            int length = line.Length;
+            int count=0;
+                  
+            while (start_idx < length)
+            {
+                while (start_idx < length && !char.IsWhiteSpace(line[start_idx]))
+                    start_idx++;
 
-            return count;
+                count++;
 
+                while (start_idx < length && char.IsWhiteSpace(line[start_idx]))
+                    start_idx++;
+            }
 
-          }
+            return count;      
         }
 
 
@@ -47,20 +57,40 @@ namespace Lab3Q1
 
              while ((line = file.ReadLine()) != null)
              {
-               //=================================================
-               // YOUR JOB TO ADD WORD COUNT INFORMATION TO MAP
-               //=================================================
+                //=================================================
+                // YOUR JOB TO ADD WORD COUNT INFORMATION TO MAP
+                //=================================================
 
-                 // Is the line a dialogueLine?
-                 //    If yes, get the index and the character name.
-                 //      if index > 0 and character not empty
-                 //        get the word counts
-                 //          if the key exists, update the word counts
-                 //          else add a new key-value to the dictionary
-                 //    reset the character
+                // Is the line a dialogueLine?
+                //    If yes, get the index and the character name.
+                //      if index > 0 and character not empty
+                //        get the word counts
+                //          if the key exists, update the word counts
+                //          else add a new key-value to the dictionary
+                //    reset the character
+                int index = IsDialogueLine(line, ref character);
+                int count = 0;
+                if ( index!= -1)
+                {
+                    if (index > 0 && character != null)
+                    {
+                        count=WordCount(ref line, index);
+                        
+                    }
 
+                }
+                if(wcounts.ContainsKey(character))
+                {
+                    wcounts[character] = count;
+                }
+                else
+                {
+                    wcounts.Add(character, count);
+                }
+                
                }
-               // Close the file
+            // Close the file
+            file.Close();
         }
 
 
@@ -128,11 +158,19 @@ namespace Lab3Q1
          * @param wcounts a map of character -> word count
          * @return sorted vector of {character, word count} pairs
          */
-        public static List<Tuple<int, string>> SortCharactersByWordcount(Dictionary<string, int> wordcount)
+        public static List<Tuple<string, int>> SortCharactersByWordcount(Dictionary<string, int> wordcount)
         {
 
-          // Implement sorting by word count here
+            // Implement sorting by word count here
+            List<Tuple<string, int>> sortedByValueList = new List<Tuple<string, int>>();         
 
+
+            foreach (KeyValuePair<string,int> item in wordcount.OrderByDescending(key=>key.Value))
+            {
+                sortedByValueList.Add(Tuple.Create(item.Key, item.Value));
+                
+            }
+         
             return sortedByValueList;
 
         }
@@ -148,6 +186,10 @@ namespace Lab3Q1
         {
 
           // Implement printing here
+          foreach(Tuple<int,string> item in sortedList)
+          {
+                Console.WriteLine(item);
+          }
 
         }
     }
