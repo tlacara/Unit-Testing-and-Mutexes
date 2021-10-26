@@ -9,12 +9,12 @@ namespace Lab3Q1
     {
         static void Main(string[] args)
         {
-          // map and mutex for thread safety
-          Mutex mutex = new Mutex();
-          Dictionary<string, int> wcountsSingleThread = new Dictionary<string, int>();
+            // map and mutex for thread safety
+            Mutex mutex = new Mutex();
+            Dictionary<string, int> wcountsSingleThread = new Dictionary<string, int>();
+            Dictionary<string, int> wcountsMultiThread = new Dictionary<string, int>();
 
-
-          var filenames = new List<string> {
+            var filenames = new List<string> {
                 "../../data/shakespeare_antony_cleopatra.txt",
                 "../../data/shakespeare_hamlet.txt",
                 "../../data/shakespeare_julius_caesar.txt",
@@ -27,23 +27,48 @@ namespace Lab3Q1
                 "../../data/shakespeare_romeo_and_juliet.txt",
            };
 
-           //=============================================================
-           // YOUR IMPLEMENTATION HERE TO COUNT WORDS IN SINGLE THREAD
-           //=============================================================
+
+            //=============================================================
+            // YOUR IMPLEMENTATION HERE TO COUNT WORDS IN SINGLE THREAD
+            //=============================================================
+
+            foreach (string item in filenames)
+            {
+                HelperFunctions.CountCharacterWords(item, mutex, wcountsSingleThread);
+            }
+
+            var sortedByValueList = HelperFunctions.SortCharactersByWordcount(wcountsSingleThread);
+            HelperFunctions.PrintListofTuples(sortedByValueList);
+
+            Console.WriteLine();
+            Console.WriteLine("SingleThread is Done!");
+            Console.WriteLine();
 
 
+            //=============================================================
+            // YOUR IMPLEMENTATION HERE TO COUNT WORDS IN MULTIPLE THREADS
+            //=============================================================
+            Stopwatch watch = new Stopwatch();
+            Thread[] thread = new Thread[filenames.Count];
+            int i = 0;
 
+            foreach (string item in filenames)
+            {
+                thread[i] = new Thread(() => HelperFunctions.CountCharacterWords(
+             filename: item,
+             mutex: mutex,
+             wcounts: wcountsMultiThread));
+                thread[i].Start();
+                thread[i].Join();
+                i++;
+            }
 
-           Console.WriteLine( "SingleThread is Done!");
-           //=============================================================
-           // YOUR IMPLEMENTATION HERE TO COUNT WORDS IN MULTIPLE THREADS
-           //=============================================================
+            var sortedByValueList1 = HelperFunctions.SortCharactersByWordcount(wcountsMultiThread);
+            HelperFunctions.PrintListofTuples(sortedByValueList1);
 
-
-
-
-           Console.WriteLine( "MultiThread is Done!");
-           
+            Console.WriteLine();
+            Console.WriteLine("MultiThread is Done!");
+            Console.ReadLine();
         }
     }
 }

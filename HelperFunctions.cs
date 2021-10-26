@@ -69,25 +69,34 @@ namespace Lab3Q1
                 //          else add a new key-value to the dictionary
                 //    reset the character
                 int index = IsDialogueLine(line, ref character);
-                int count = 0;
+
+                //dialogue line
                 if ( index!= -1)
                 {
+                    //dialogue line for character
                     if (index > 0 && character != null)
                     {
-                        count=WordCount(ref line, index);
+                        int count = WordCount(ref line, index);
+
+                        if (wcounts.ContainsKey(character))
+                        {
+                            mutex.WaitOne();
+                            wcounts[character] += count;
+                            mutex.ReleaseMutex();
+                        }
+
+                        else
+                        {
+                            mutex.WaitOne();
+                            wcounts.Add(character, count);
+                            mutex.ReleaseMutex();
+                        }
                         
                     }
-
-                }
-                if(wcounts.ContainsKey(character))
-                {
-                    wcounts[character] = count;
-                }
-                else
-                {
-                    wcounts.Add(character, count);
+                    
                 }
                 
+                              
                }
             // Close the file
             file.Close();
@@ -182,11 +191,11 @@ namespace Lab3Q1
          * @param sortedList
          * @return Nothing
          */
-        public static void PrintListofTuples(List<Tuple<int, string>> sortedList)
+        public static void PrintListofTuples(List<Tuple<string, int>> sortedList)
         {
 
           // Implement printing here
-          foreach(Tuple<int,string> item in sortedList)
+          foreach(Tuple<string,int> item in sortedList)
           {
                 Console.WriteLine(item);
           }
