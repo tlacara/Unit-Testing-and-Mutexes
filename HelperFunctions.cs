@@ -19,16 +19,22 @@ namespace Lab3Q1
             // YOUR IMPLEMENTATION HERE
             int length = line.Length;
             int count=0;
-                  
+
+            if (String.IsNullOrWhiteSpace(line))
+            {
+                return 0;
+            }
+
             while (start_idx < length)
             {
+                while (start_idx < length && char.IsWhiteSpace(line[start_idx]))
+                    start_idx++;
+
                 while (start_idx < length && !char.IsWhiteSpace(line[start_idx]))
                     start_idx++;
 
-                count++;
 
-                while (start_idx < length && char.IsWhiteSpace(line[start_idx]))
-                    start_idx++;
+                count++;
             }
 
             return count;      
@@ -78,20 +84,22 @@ namespace Lab3Q1
                     {
                         int count = WordCount(ref line, index);
 
+                        mutex.WaitOne();
                         if (wcounts.ContainsKey(character))
                         {
-                            mutex.WaitOne();
+                            
                             wcounts[character] += count;
-                            mutex.ReleaseMutex();
+                            
                         }
 
                         else
                         {
-                            mutex.WaitOne();
+                            
                             wcounts.Add(character, count);
-                            mutex.ReleaseMutex();
+                           
                         }
-                        
+                        mutex.ReleaseMutex();
+
                     }
                     
                 }
