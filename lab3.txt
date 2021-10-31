@@ -1,0 +1,15 @@
+How can you test your program without needing to manually go through all the dialogue in Shakespeare's plays?
+
+A: We can take onle line that we know the wordcount of and simply copy and paste multiple rows of that line. 
+We can use these lines of texts to test our program since we know the wordcount of each line.
+
+Has writing this code multithreaded helped in any way? Show some numbers in your observations. If your answer is no, under what conditions can multithreading help?
+
+A: I was not able to see any benefit in writing the code multithreaded as the time it took for single threaded compared to multithreaded were bascially identical.
+Multithreading would be more useful if there were a larger amount of text files that needed to be processed in which case we can create more threads. There was simply not
+no enough data that needed to be processed in order for multithreading to be effective in this application.
+
+As written, if a character in one play has the same name as a character in another -- e.g. King -- it will treat them as the same and artificially increase the word count. 
+
+How can you modify your code to treat them as separate, but still store all characters in the single dictionary (you do not need to implement this... just think about how you would do it)?
+A: One way we could do this is to create a separate dictionary for each play(one per thread) and then combine all the dictionary's into one dictionary in the end.
